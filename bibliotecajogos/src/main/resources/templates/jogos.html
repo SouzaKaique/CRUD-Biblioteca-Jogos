@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        th:replace="~{layout :: layout (title=~{::title}, content=~{::section})}"
+>
+<head>
+    <title>Biblioteca de Jogos</title>
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <style>
+        /* Header estilizado */
+        .header-custom {
+            background: linear-gradient(135deg, #0d6efd, #6610f2);
+            color: white;
+            border-radius: 12px;
+            padding: 20px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .header-custom h1 {
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        .header-custom .btn {
+            box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+        }
+        .search-bar input, .search-bar select {
+            border-radius: 8px 0 0 8px;
+        }
+        .search-bar button {
+            border-radius: 0 8px 8px 0;
+        }
+    </style>
+</head>
+<body>
+<section>
+    <!-- HEADER -->
+    <div class="header-custom d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <h1 class="mb-3 mb-md-0">
+            <i class="bi bi-controller"></i> Minha Biblioteca
+        </h1>
+        <a th:href="@{/jogos/novo}" class="btn btn-light text-primary fw-bold">
+            <i class="bi bi-plus-circle"></i> Adicionar Jogo
+        </a>
+    </div>
+
+    <!-- Barra de pesquisa mais integrada -->
+    <form th:action="@{/jogos/pesquisar}" method="get" class="mb-4">
+        <div class="input-group search-bar shadow-sm">
+            <input
+                    type="text"
+                    name="termo"
+                    class="form-control"
+                    placeholder="🔍 Buscar jogo por título, autor ou gênero..."
+            />
+            <select name="tipo" class="form-select">
+                <option value="titulo">Título</option>
+                <option value="autor">Autor</option>
+                <option value="genero">Gênero</option>
+            </select>
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-search"></i> Pesquisar
+            </button>
+        </div>
+    </form>
+
+    <!-- Cards de Jogos -->
+    <div class="row">
+        <div class="col-md-4 mb-4" th:each="jogo : ${jogos}">
+            <div class="card h-100 shadow-sm">
+                <!-- Capa -->
+                <img
+                        th:if="${jogo.urlCapa != null and !jogo.urlCapa.isEmpty()}"
+                        th:src="${jogo.urlCapa}"
+                        class="card-img-top"
+                        alt="Capa do Jogo"
+                        onerror="this.onerror=null;this.src='https://via.placeholder.com/300x400.png?text=Sem+Capa';"
+                />
+                <img
+                        th:if="${jogo.urlCapa == null or jogo.urlCapa.isEmpty()}"
+                        src="https://via.placeholder.com/300x400.png?text=Sem+Capa"
+                        class="card-img-top"
+                        alt="Sem capa"
+                />
+
+                <!-- Corpo do Card -->
+                <div class="card-body">
+                    <h5 class="card-title fw-bold" th:text="${jogo.titulo}"></h5>
+                    <p class="card-text text-muted mb-1">
+                        <i class="bi bi-person"></i> <span th:text="${jogo.autor}"></span>
+                    </p>
+                    <p class="card-text text-muted mb-1">
+                        <i class="bi bi-calendar"></i> <span th:text="${jogo.anoPublicacao}"></span>
+                    </p>
+                    <span class="badge bg-primary" th:text="${jogo.genero}"></span>
+
+                    <!-- Nota em estrelas -->
+                    <div class="mt-2">
+                        <span th:each="i : ${#numbers.sequence(1,5)}"
+                              th:classappend="${i <= jogo.nota} ? 'bi-star-fill text-warning' : 'bi-star text-muted'"
+                              class="bi"></span>
+                    </div>
+
+                    <!-- Finalizado -->
+                    <div class="mt-2">
+                        <span th:if="${jogo.finalizado}" class="badge bg-success">Finalizado</span>
+                        <span th:unless="${jogo.finalizado}" class="badge bg-warning text-dark">Não finalizado</span>
+                    </div>
+                </div>
+
+                <!-- Ações -->
+                <div class="card-footer text-center">
+                    <a th:href="@{/jogos/editar/{id}(id=${jogo.id})}" class="btn btn-sm btn-info me-2">
+                        <i class="bi bi-pencil-square"></i> Editar
+                    </a>
+                    <a th:href="@{/jogos/excluir/{id}(id=${jogo.id})}" class="btn btn-sm btn-danger">
+                        <i class="bi bi-trash"></i> Excluir
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
