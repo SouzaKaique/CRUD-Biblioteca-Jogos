@@ -1,7 +1,7 @@
-package br.com.bibliotecajogos.bibliotecajogos.service;
+package br.com.bibliotecajogos.service;
 
-import br.com.bibliotecajogos.bibliotecajogos.entity.Jogo;
-import br.com.bibliotecajogos.bibliotecajogos.repository.JogoRepository;
+import br.com.bibliotecajogos.entity.Jogo;
+import br.com.bibliotecajogos.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;

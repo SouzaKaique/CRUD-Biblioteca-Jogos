@@ -1,6 +1,6 @@
-package br.com.bibliotecajogos.bibliotecajogos.repository;
+package br.com.bibliotecajogos.repository;
 
-import br.com.bibliotecajogos.bibliotecajogos.entity.Jogo;
+import br.com.bibliotecajogos.entity.Jogo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,9 @@
-package br.com.bibliotecajogos.bibliotecajogos.config;
+package br.com.bibliotecajogos.config;
 
-import br.com.bibliotecajogos.bibliotecajogos.entity.Categoria;
-import br.com.bibliotecajogos.bibliotecajogos.entity.Jogo;
-import br.com.bibliotecajogos.bibliotecajogos.repository.CategoriaRepository;
-import br.com.bibliotecajogos.bibliotecajogos.repository.JogoRepository;
+import br.com.bibliotecajogos.entity.Categoria;
+import br.com.bibliotecajogos.entity.Jogo;
+import br.com.bibliotecajogos.repository.CategoriaRepository;
+import br.com.bibliotecajogos.repository.JogoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Profile;

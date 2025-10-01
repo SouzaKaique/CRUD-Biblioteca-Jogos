@@ -1,4 +1,4 @@
-package br.com.bibliotecajogos.bibliotecajogos;
+package br.com.bibliotecajogos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package br.com.bibliotecajogos.bibliotecajogos.entity;
+package br.com.bibliotecajogos.entity;
 
 import jakarta.persistence.*;
 
