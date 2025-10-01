@@ -7,7 +7,6 @@ WORKDIR /app
 
 # Copia os arquivos de configuração do Maven para aproveitar o cache de dependências
 COPY pom.xml .
-COPY .mvn .mvn
 
 # Baixa as dependências do projeto
 RUN mvn dependency:go-offline
@@ -33,4 +32,5 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 
 # Comando para iniciar a aplicação quando o container for executado
+
 ENTRYPOINT ["java", "-jar", "app.jar"]
