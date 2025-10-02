@@ -1,4 +1,4 @@
-package br.com.bibliotecajogos.bibliotecajogos.repository;
+package br.com.bibliotecajogos.repository;
 
 import br.com.bibliotecajogos.bibliotecajogos.entity.Jogo;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,3 +15,4 @@ public interface JogoRepository extends JpaRepository<Jogo, Long> {
 
     List<Jogo> findByGeneroContainingIgnoreCase(String genero);
 }
+
